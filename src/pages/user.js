@@ -9,7 +9,7 @@ const Users = () => (
   <>
     <Head>
       <title>
-        users | Material Kit
+        users |  Voting App
       </title>
     </Head>
     <Box

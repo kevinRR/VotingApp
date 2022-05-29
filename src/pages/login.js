@@ -12,7 +12,7 @@ const Login = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
+      email: 'demo@khem.io',
       password: 'Password123'
     },
     validationSchema: Yup.object({
@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Login | Material Kit</title>
+        <title>Login | Voting App</title>
       </Head>
       <Box
         component="main"
@@ -85,7 +85,7 @@ const Login = () => {
                 xs={12}
                 md={6}
               >
-                <Button
+                {/* <Button
                   color="info"
                   fullWidth
                   startIcon={<FacebookIcon />}
@@ -94,14 +94,14 @@ const Login = () => {
                   variant="contained"
                 >
                   Login with Facebook
-                </Button>
+                </Button> */}
               </Grid>
               <Grid
                 item
                 xs={12}
                 md={6}
               >
-                <Button
+                {/* <Button
                   fullWidth
                   color="error"
                   startIcon={<GoogleIcon />}
@@ -110,7 +110,7 @@ const Login = () => {
                   variant="contained"
                 >
                   Login with Google
-                </Button>
+                </Button> */}
               </Grid>
             </Grid>
             <Box
@@ -119,13 +119,13 @@ const Login = () => {
                 pt: 3
               }}
             >
-              <Typography
+              {/* <Typography
                 align="center"
                 color="textSecondary"
                 variant="body1"
               >
                 or login with email address
-              </Typography>
+              </Typography> */}
             </Box>
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
@@ -165,7 +165,7 @@ const Login = () => {
                 Sign In Now
               </Button>
             </Box>
-            <Typography
+            {/* <Typography
               color="textSecondary"
               variant="body2"
             >
@@ -185,7 +185,7 @@ const Login = () => {
                   Sign Up
                 </Link>
               </NextLink>
-            </Typography>
+            </Typography> */}
           </form>
         </Container>
       </Box>

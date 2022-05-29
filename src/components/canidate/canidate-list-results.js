@@ -17,41 +17,41 @@ import {
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
 
-export const AreaListResults = ({ areas, ...rest }) => {
-  const [selectedAreaIds, setSelectedAreaIds] = useState([]);
+export const CanidateListResults = ({ canidates, ...rest }) => {
+  const [selectedCanidateIds, setSelectedCanidateIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedAreaIds;
+    let newSelectedCanidateIds;
 
     if (event.target.checked) {
-      newSelectedAreaIds = areas.map((area) => area.id);
+      newSelectedCanidateIds = canidates.map((canidate) => canidate.id);
     } else {
-      newSelectedAreaIds = [];
+      newSelectedCanidateIds = [];
     }
 
-    setSelectedAreaIds(newSelectedAreaIds);
+    setSelectedCanidateIds(newSelectedCanidateIds);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedAreaIds.indexOf(id);
-    let newSelectedAreaIds = [];
+    const selectedIndex = selectedCanidateIds.indexOf(id);
+    let newSelectedCanidateIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds, id);
+      newSelectedCanidateIds = newSelectedCanidateIds.concat(selectedCanidateIds, id);
     } else if (selectedIndex === 0) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds.slice(1));
-    } else if (selectedIndex === selectedAreaIds.length - 1) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds.slice(0, -1));
+      newSelectedCanidateIds = newSelectedCanidateIds.concat(selectedCanidateIds.slice(1));
+    } else if (selectedIndex === selectedCanidateIds.length - 1) {
+      newSelectedCanidateIds = newSelectedCanidateIds.concat(selectedCanidateIds.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(
-        selectedAreaIds.slice(0, selectedIndex),
-        selectedAreaIds.slice(selectedIndex + 1)
+      newSelectedCanidateIds = newSelectedCanidateIds.concat(
+        selectedCanidateIds.slice(0, selectedIndex),
+        selectedCanidateIds.slice(selectedIndex + 1)
       );
     }
 
-    setSelectedAreaIds(newSelectedAreaIds);
+    setSelectedCanidateIds(newSelectedCanidateIds);
   };
 
   const handleLimitChange = (event) => {
@@ -71,11 +71,11 @@ export const AreaListResults = ({ areas, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedAreaIds.length === areas.length}
+                    checked={selectedCanidateIds.length === canidates.length}
                     color="primary"
                     indeterminate={
-                      selectedAreaIds.length > 0
-                      && selectedAreaIds.length < areas.length
+                      selectedCanidateIds.length > 0
+                      && selectedCanidateIds.length < canidates.length
                     }
                     onChange={handleSelectAll}
                   />
@@ -83,26 +83,31 @@ export const AreaListResults = ({ areas, ...rest }) => {
                 <TableCell>
                   Name
                 </TableCell>
+                {/* <TableCell>
+                  Email
+                </TableCell> */}
                 <TableCell>
-                  State
+                  Location
                 </TableCell>
                 <TableCell>
-                  Code
+                  Party Name
                 </TableCell>
-                
+                <TableCell>
+                  Registration date
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {areas.slice(0, limit).map((area) => (
+              {canidates.slice(0, limit).map((canidate) => (
                 <TableRow
                   hover
-                  key={area.id}
-                  selected={selectedAreaIds.indexOf(area.id) !== -1}
+                  key={canidate.id}
+                  selected={selectedCanidateIds.indexOf(canidate.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedAreaIds.indexOf(area.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, area.id)}
+                      checked={selectedCanidateIds.indexOf(canidate.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, canidate.id)}
                       value="true"
                     />
                   </TableCell>
@@ -114,31 +119,31 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       }}
                     >
                       <Avatar
-                        src={area.avatarUrl}
+                        src={canidate.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(area.address.city)}
+                        {getInitials(canidate.name)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {area.address.city}
+                        {canidate.name}
                       </Typography>
                     </Box>
                   </TableCell>
                   {/* <TableCell>
-                    {area.email}
+                    {canidate.email}
                   </TableCell> */}
                   <TableCell>
-                    {`${area.address.state}, ${area.address.country}`}
+                    {`${canidate.address.city}, ${canidate.address.state}, ${canidate.address.country}`}
                   </TableCell>
                   <TableCell>
-                    {area.code}
+                    {canidate.party_name}
                   </TableCell>
-                  {/* <TableCell>
-                    {format(area.createdAt, 'dd/MM/yyyy')}
-                  </TableCell> */}
+                  <TableCell>
+                    {format(canidate.createdAt, 'dd/MM/yyyy')}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -147,7 +152,7 @@ export const AreaListResults = ({ areas, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={areas.length}
+        count={canidates.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={page}
@@ -158,6 +163,6 @@ export const AreaListResults = ({ areas, ...rest }) => {
   );
 };
 
-AreaListResults.propTypes = {
-  areas: PropTypes.array.isRequired
+CanidateListResults.propTypes = {
+  canidates: PropTypes.array.isRequired
 };

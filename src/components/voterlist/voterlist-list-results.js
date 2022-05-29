@@ -16,42 +16,43 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import { voterlists } from 'src/__mocks__/voterlists';
 
-export const CustomerListResults = ({ customers, ...rest }) => {
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
+export const VoterListResults = ({ voterlists, ...rest }) => {
+  const [selectedVoterIds, setSelectedVoterIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+    let newSelectedVoterIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer.id);
+      newSelectedVoterIds = voterlists.map((voterlist) => voterlist.id);
     } else {
-      newSelectedCustomerIds = [];
+      newSelectedVoterIds = [];
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedVoterIds(newSelectedVoterIds);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
+    const selectedIndex = selectedVoterIds.indexOf(id);
+    let newSelectedVoterIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
+      newSelectedVoterIds = newSelectedVoterIds.concat(selectedVoterIds, id);
     } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
+      newSelectedVoterIds = newSelectedVoterIds.concat(selectedVoterIds.slice(1));
+    } else if (selectedIndex === selectedVoterIds.length - 1) {
+      newSelectedVoterIds = newSelectedVoterIds.concat(selectedVoterIds.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
+      newSelectedVoterIds = newSelectedVoterIds.concat(
+        selectedVoterIds.slice(0, selectedIndex),
+        selectedVoterIds.slice(selectedIndex + 1)
       );
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedVoterIds(newSelectedVoterIds);
   };
 
   const handleLimitChange = (event) => {
@@ -71,11 +72,11 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
+                    checked={selectedVoterIds.length === voterlists.length}
                     color="primary"
                     indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < customers.length
+                      selectedVoterIds.length > 0
+                      && selectedVoterIds.length < voterlists.length
                     }
                     onChange={handleSelectAll}
                   />
@@ -90,7 +91,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                   Location
                 </TableCell>
                 <TableCell>
-                  Phone
+                  Code
                 </TableCell>
                 <TableCell>
                   Registration date
@@ -98,16 +99,16 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {voterlists.slice(0, limit).map((voterlist) => (
                 <TableRow
                   hover
-                  key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
+                  key={voterlist.id}
+                  selected={selectedVoterIds.indexOf(voterlist.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
+                      checked={selectedVoterIds.indexOf(voterlist.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, voterlist.id)}
                       value="true"
                     />
                   </TableCell>
@@ -119,30 +120,30 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                       }}
                     >
                       <Avatar
-                        src={customer.avatarUrl}
+                        src={voterlist.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(voterlist.name)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.name}
+                        {voterlist.name}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {customer.email}
+                    {voterlist.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {`${voterlist.address.city}, ${voterlist.address.state}, ${voterlist.address.country}`}
                   </TableCell>
                   <TableCell>
-                    {customer.phone}
+                    {voterlist.phone}
                   </TableCell>
                   <TableCell>
-                    {format(customer.createdAt, 'dd/MM/yyyy')}
+                    {format(voterlist.createdAt, 'dd/MM/yyyy')}
                   </TableCell>
                 </TableRow>
               ))}
@@ -152,7 +153,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={customers.length}
+        count={voterlists.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={page}
@@ -163,6 +164,6 @@ export const CustomerListResults = ({ customers, ...rest }) => {
   );
 };
 
-CustomerListResults.propTypes = {
-  customers: PropTypes.array.isRequired
+VoterListResults.propTypes = {
+  voterlists: PropTypes.array.isRequired
 };

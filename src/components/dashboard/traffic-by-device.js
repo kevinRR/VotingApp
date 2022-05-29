@@ -65,9 +65,9 @@ export const TrafficByDevice = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="Other Information" />
       <Divider />
-      <CardContent>
+      {/* <CardContent>
         <Box
           sx={{
             height: 300,
@@ -116,7 +116,7 @@ export const TrafficByDevice = (props) => {
             </Box>
           ))}
         </Box>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };

@@ -13,26 +13,26 @@ import {
 const states = [
   {
     value: 'alabama',
-    label: 'Alabama'
+    label: 'Delhi'
   },
   {
     value: 'new-york',
-    label: 'New York'
+    label: 'Hariyana'
   },
   {
     value: 'san-francisco',
-    label: 'San Francisco'
+    label: 'Utter Pardesh'
   }
 ];
 
 export const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
+    firstName: 'Khem Raj',
+    lastName: 'Regmi',
+    email: 'demo@khem.io',
     phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    state: 'Dehli',
+    country: 'India'
   });
 
   const handleChange = (event) => {

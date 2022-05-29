@@ -67,7 +67,7 @@ export const AreaListToolbar = (props) => (
                   </InputAdornment>
                 )
               }}
-              placeholder="Search customer"
+              placeholder="Search "
               variant="outlined"
             />
           </Box>

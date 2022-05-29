@@ -1,15 +1,16 @@
 import Head from 'next/head';
 import { Box, Container } from '@mui/material';
-// import { CustomerListResults } from '../components/canidate/canidate-list-results';
-// import { CustomerListToolbar } from '../components/canidate/canidate-list-toolbar';
-import { DashboardLayout } from '../components/dashboard-layout';
-import { customers } from '../__mocks__/customers';
+import { CampionListResults } from '../components/campion/campion-list-results';
+import { CampionListToolbar } from '../components/campion/campion-list-toolbar';
 
-const Customers = () => (
+import { DashboardLayout } from '../components/dashboard-layout';
+import { campions } from '../__mocks__/campions';
+
+const Campions = () => (
   <>
     <Head>
       <title>
-        Customers | Voting App
+        Campions |  Voting App
       </title>
     </Head>
     <Box
@@ -20,18 +21,18 @@ const Customers = () => (
       }}
     >
       <Container maxWidth={false}>
-        {/* <CustomerListToolbar /> */}
+        <CampionListToolbar />
         <Box sx={{ mt: 3 }}>
-          {/* <CustomerListResults customers={customers} /> */}
+          <CampionListResults campions={campions} />
         </Box>
       </Container>
     </Box>
   </>
 );
-Customers.getLayout = (page) => (
+Campions.getLayout = (page) => (
   <DashboardLayout>
     {page}
   </DashboardLayout>
 );
 
-export default Customers;
+export default Campions;

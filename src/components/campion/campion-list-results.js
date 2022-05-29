@@ -17,41 +17,41 @@ import {
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
 
-export const AreaListResults = ({ areas, ...rest }) => {
-  const [selectedAreaIds, setSelectedAreaIds] = useState([]);
+export const CampionListResults = ({ campions, ...rest }) => {
+  const [selectedCampionIds, setSelectedCampionIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedAreaIds;
+    let newSelectedCampionIds;
 
     if (event.target.checked) {
-      newSelectedAreaIds = areas.map((area) => area.id);
+      newSelectedCampionIds = campions.map((campion) => campion.id);
     } else {
-      newSelectedAreaIds = [];
+      newSelectedCampionIds = [];
     }
 
-    setSelectedAreaIds(newSelectedAreaIds);
+    setSelectedCampionIds(newSelectedCampionIds);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedAreaIds.indexOf(id);
-    let newSelectedAreaIds = [];
+    const selectedIndex = selectedCampionIds.indexOf(id);
+    let newSelectedCampionIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds, id);
+      newSelectedCampionIds = newSelectedCampionIds.concat(selectedCampionIds, id);
     } else if (selectedIndex === 0) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds.slice(1));
-    } else if (selectedIndex === selectedAreaIds.length - 1) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(selectedAreaIds.slice(0, -1));
+      newSelectedCampionIds = newSelectedCampionIds.concat(selectedCampionIds.slice(1));
+    } else if (selectedIndex === selectedCampionIds.length - 1) {
+      newSelectedCampionIds = newSelectedCampionIds.concat(selectedCampionIds.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelectedAreaIds = newSelectedAreaIds.concat(
-        selectedAreaIds.slice(0, selectedIndex),
-        selectedAreaIds.slice(selectedIndex + 1)
+      newSelectedCampionIds = newSelectedCampionIds.concat(
+        selectedCampionIds.slice(0, selectedIndex),
+        selectedCampionIds.slice(selectedIndex + 1)
       );
     }
 
-    setSelectedAreaIds(newSelectedAreaIds);
+    setSelectedCampionIds(newSelectedCampionIds);
   };
 
   const handleLimitChange = (event) => {
@@ -71,11 +71,11 @@ export const AreaListResults = ({ areas, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedAreaIds.length === areas.length}
+                    checked={selectedCampionIds.length === campions.length}
                     color="primary"
                     indeterminate={
-                      selectedAreaIds.length > 0
-                      && selectedAreaIds.length < areas.length
+                      selectedCampionIds.length > 0
+                      && selectedCampionIds.length < campions.length
                     }
                     onChange={handleSelectAll}
                   />
@@ -84,25 +84,27 @@ export const AreaListResults = ({ areas, ...rest }) => {
                   Name
                 </TableCell>
                 <TableCell>
-                  State
-                </TableCell>
-                <TableCell>
                   Code
                 </TableCell>
-                
+                <TableCell>
+                  Start Date
+                </TableCell>
+                <TableCell>
+                  End Date
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {areas.slice(0, limit).map((area) => (
+              {campions.slice(0, limit).map((customer) => (
                 <TableRow
                   hover
-                  key={area.id}
-                  selected={selectedAreaIds.indexOf(area.id) !== -1}
+                  key={customer.id}
+                  selected={selectedCampionIds.indexOf(customer.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedAreaIds.indexOf(area.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, area.id)}
+                      checked={selectedCampionIds.indexOf(customer.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, customer.id)}
                       value="true"
                     />
                   </TableCell>
@@ -114,31 +116,32 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       }}
                     >
                       <Avatar
-                        src={area.avatarUrl}
+                        src={customer.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(area.address.city)}
+                        {getInitials(customer.name)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {area.address.city}
+                        {customer.name}
                       </Typography>
                     </Box>
                   </TableCell>
-                  {/* <TableCell>
-                    {area.email}
-                  </TableCell> */}
                   <TableCell>
-                    {`${area.address.state}, ${area.address.country}`}
-                  </TableCell>
-                  <TableCell>
-                    {area.code}
+                    {customer.code}
                   </TableCell>
                   {/* <TableCell>
-                    {format(area.createdAt, 'dd/MM/yyyy')}
+                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
                   </TableCell> */}
+                 
+                  <TableCell>
+                    {format(customer.startDate, 'dd/MM/yyyy')}
+                  </TableCell>
+                  <TableCell>
+                    {format(customer.endDate, 'dd/MM/yyyy')}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -147,7 +150,7 @@ export const AreaListResults = ({ areas, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={areas.length}
+        count={campions.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleLimitChange}
         page={page}
@@ -158,6 +161,6 @@ export const AreaListResults = ({ areas, ...rest }) => {
   );
 };
 
-AreaListResults.propTypes = {
-  areas: PropTypes.array.isRequired
+CampionListResults.propTypes = {
+  campions: PropTypes.array.isRequired
 };

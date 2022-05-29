@@ -11,7 +11,7 @@ import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
 
-export const UserListToolbar = (props) => (
+export const CampionListToolbar = (props) => (
   <Box {...props}>
     <Box
       sx={{
@@ -26,7 +26,7 @@ export const UserListToolbar = (props) => (
         sx={{ m: 1 }}
         variant="h4"
       >
-        Admin Users
+        Campions
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
@@ -45,7 +45,7 @@ export const UserListToolbar = (props) => (
           color="primary"
           variant="contained"
         >
-          Add Admin Users
+          Add Campion
         </Button>
       </Box>
     </Box>

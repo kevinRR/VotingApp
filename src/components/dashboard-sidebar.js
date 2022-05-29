@@ -25,16 +25,16 @@ const items = [
   {
     href: '/user',
     icon: (<UsersIcon fontSize="small" />),
-    title: 'User'
+    title: 'Admin User'
   },
 
   {
-    href: '/user',
+    href: '/voterlists',
     icon: (<UserAddIcon fontSize="small" />),
     title: 'VoterList'
   },
   {
-    href: '/user',
+    href: '/areas',
     icon: (<UsersIcon fontSize="small" />),
     title: 'Area'
   },
@@ -44,12 +44,12 @@ const items = [
   //   title: 'Products'
   // },
   {
-    href: '/account',
+    href: '/canidates',
     icon: (<UserIcon fontSize="small" />),
     title: 'Canidates'
   },
   {
-    href: '/settings',
+    href: '/campions',
     icon: (<CogIcon fontSize="small" />),
     title: 'Campions'
   },
