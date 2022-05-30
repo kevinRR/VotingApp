@@ -1,13 +1,40 @@
 import Head from 'next/head';
 import { Box, Container } from '@mui/material';
+import axios from 'axios';
 import { CampionListResults } from '../components/campion/campion-list-results';
 import { CampionListToolbar } from '../components/campion/campion-list-toolbar';
-
+import React, { useEffect ,useState} from "react"
 import { DashboardLayout } from '../components/dashboard-layout';
-import { campions } from '../__mocks__/campions';
+// import { campions } from '../__mocks__/campions';
 
-const Campions = () => (
-  <>
+
+const Campions = () => {
+    const [campions, setCampions] = useState([])
+    // const fetchData = () => {
+    //       fetch("https://decentralized-ivoting.herokuapp.com/campaign-list")
+    //         .then(response => {
+    //           console.log(response.json())
+    //           // setCampions(response.json().promise)
+    //         })
+    //         // .then(data => {
+    //         //   setCampions(data)
+    //         // })
+    //     }
+      
+        useEffect(() => {     
+          const getData = async () => {  
+            await axios.get('https://decentralized-ivoting.herokuapp.com/campaign-list')  
+            .then(res => {  
+              console.log('this res',res.data) 
+              setCampions(res.data) 
+            })  
+            .catch(err => {  
+              console.log(err)  
+            });  
+          }  
+          getData()  
+        }, [])
+  return (<>
     <Head>
       <title>
         Campions |  Voting App
@@ -27,8 +54,9 @@ const Campions = () => (
         </Box>
       </Container>
     </Box>
-  </>
-);
+  </>)
+};
+
 Campions.getLayout = (page) => (
   <DashboardLayout>
     {page}

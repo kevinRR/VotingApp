@@ -95,16 +95,16 @@ export const CampionListResults = ({ campions, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {campions.slice(0, limit).map((customer) => (
+              {campions.slice(0, limit).map((campion) => (
                 <TableRow
                   hover
-                  key={customer.id}
-                  selected={selectedCampionIds.indexOf(customer.id) !== -1}
+                  key={campion.id}
+                  selected={selectedCampionIds.indexOf(campion.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedCampionIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
+                      checked={selectedCampionIds.indexOf(campion.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, campion.id)}
                       value="true"
                     />
                   </TableCell>
@@ -116,31 +116,31 @@ export const CampionListResults = ({ campions, ...rest }) => {
                       }}
                     >
                       <Avatar
-                        src={customer.avatarUrl}
+                        src={campion.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(campion.name)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.name}
+                        {campion.name}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {customer.code}
+                    {campion.code}
                   </TableCell>
                   {/* <TableCell>
                     {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
                   </TableCell> */}
                  
                   <TableCell>
-                    {format(customer.startDate, 'dd/MM/yyyy')}
+                    {new Date(campion.startDateTime).toLocaleDateString() }{new Date(campion.startDateTime).toLocaleTimeString()}
                   </TableCell>
                   <TableCell>
-                    {format(customer.endDate, 'dd/MM/yyyy')}
+                  {new Date(campion.endDateTime).toLocaleDateString()} {new Date(campion.endDateTime).toLocaleTimeString()}
                   </TableCell>
                 </TableRow>
               ))}
