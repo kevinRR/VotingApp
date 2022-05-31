@@ -55,6 +55,7 @@ export const VoterListToolbar = (props) => (
           <Box sx={{ maxWidth: 500 }}>
             <TextField
               fullWidth
+              onChange={props.handleSearch}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

@@ -1,8 +1,6 @@
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import PhoneIcon from '@mui/icons-material/Phone';
-import TabletIcon from '@mui/icons-material/Tablet';
+import { Female, Male, Transgender } from '@mui/icons-material';
 
 export const TrafficByDevice = (props) => {
   const theme = useTheme();
@@ -10,19 +8,19 @@ export const TrafficByDevice = (props) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [63, 70, 4],
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Male', 'Female', 'Others']
   };
 
   const options = {
     animation: false,
-    cutoutPercentage: 80,
+    cutoutPercentage: 137,
     layout: { padding: 0 },
     legend: {
       display: false
@@ -44,21 +42,21 @@ export const TrafficByDevice = (props) => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Male',
       value: 63,
-      icon: LaptopMacIcon,
+      icon: Male,
       color: '#3F51B5'
     },
     {
-      title: 'Tablet',
-      value: 15,
-      icon: TabletIcon,
+      title: 'Female',
+      value: 70,
+      icon: Female,
       color: '#E53935'
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
+      title: 'Others',
+      value: 4,
+      icon: Transgender,
       color: '#FB8C00'
     }
   ];
@@ -67,7 +65,7 @@ export const TrafficByDevice = (props) => {
     <Card {...props}>
       <CardHeader title="Other Information" />
       <Divider />
-      {/* <CardContent>
+      <CardContent>
         <Box
           sx={{
             height: 300,
@@ -116,7 +114,7 @@ export const TrafficByDevice = (props) => {
             </Box>
           ))}
         </Box>
-      </CardContent> */}
+      </CardContent>
     </Card>
   );
 };

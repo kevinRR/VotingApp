@@ -54,6 +54,7 @@ export const UserListToolbar = (props) => (
         <CardContent>
           <Box sx={{ maxWidth: 500 }}>
             <TextField
+              onChange={props.handleSearch}
               fullWidth
               InputProps={{
                 startAdornment: (

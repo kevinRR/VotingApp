@@ -67,7 +67,7 @@ const Dashboard = () => (
           </Grid>
           <Grid
             item
-            lg={8}
+            lg={6}
             md={12}
             xl={9}
             xs={12}
@@ -76,7 +76,7 @@ const Dashboard = () => (
           </Grid>
           <Grid
             item
-            lg={4}
+            lg={6}
             md={6}
             xl={3}
             xs={12}
@@ -90,7 +90,7 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+            {/* <LatestProducts sx={{ height: '100%' }} /> */}
           </Grid>
           <Grid
             item
@@ -99,7 +99,7 @@ const Dashboard = () => (
             xl={9}
             xs={12}
           >
-            <LatestOrders />
+            {/* <LatestOrders /> */}
           </Grid>
         </Grid>
       </Container>

@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export const canidates = [
+export const mockCanidates = [
   {
     id: uuid(),
     address: {
