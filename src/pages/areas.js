@@ -11,7 +11,7 @@ const Areas = () => {
   const [areas, setAreas] = useState([])
       useEffect(() => {     
         const getData = async () => {  
-          await axios.get('https://decentralized-ivoting.herokuapp.com/area-list')  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/area-list?campaignCode=national-election-2')  
           .then(res => {  
             console.log('this res',res.data) 
             setAreas(res.data) 

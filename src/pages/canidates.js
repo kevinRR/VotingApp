@@ -12,7 +12,7 @@ const Canidates = () => {
   const [canidates, setCanidates] = useState([])
       useEffect(() => {     
         const getData = async () => {  
-          await axios.get('https://decentralized-ivoting.herokuapp.com/candidate-list')  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/candidate-list?campaignCode=national-election-2&areaCode=area-2')  
           .then(res => {  
             console.log('this res',res.data) 
             setCanidates(res.data) 

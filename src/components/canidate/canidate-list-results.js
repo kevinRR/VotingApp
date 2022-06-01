@@ -87,14 +87,12 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                   Email
                 </TableCell> */}
                 <TableCell>
-                  Location
+                  Canidate Code
                 </TableCell>
                 <TableCell>
-                  Party Name
+                 Canidate Sign
                 </TableCell>
-                <TableCell>
-                  Registration date
-                </TableCell>
+              
               </TableRow>
             </TableHead>
             <TableBody>
@@ -122,13 +120,13 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                         src={canidate.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(canidate.name)}
+                        {getInitials(canidate.candidateName)}
                       </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {canidate.name}
+                        {canidate.candidateName}
                       </Typography>
                     </Box>
                   </TableCell>
@@ -136,14 +134,30 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                     {canidate.email}
                   </TableCell> */}
                   <TableCell>
-                    {`${canidate.address.city}, ${canidate.address.state}, ${canidate.address.country}`}
+                    {canidate.candidateCode}
                   </TableCell>
                   <TableCell>
-                    {canidate.party_name}
+                    <Box
+                      sx={{
+                        alignItems: 'center',
+                        display: 'flex'
+                      }}
+                    >
+                      <Avatar
+                        src={canidate.candidateSign}
+                        sx={{ mr: 2 }}
+                      >
+                        {getInitials(canidate.candidateName)}
+                      </Avatar>
+                      <Typography
+                        color="textPrimary"
+                        variant="body1"
+                      >
+                        {canidate.candidateName}
+                      </Typography>
+                    </Box>
                   </TableCell>
-                  <TableCell>
-                    {format(canidate.createdAt, 'dd/MM/yyyy')}
-                  </TableCell>
+                 
                 </TableRow>
               ))}
             </TableBody>

@@ -84,9 +84,6 @@ export const AreaListResults = ({ areas, ...rest }) => {
                   Name
                 </TableCell>
                 <TableCell>
-                  State
-                </TableCell>
-                <TableCell>
                   Code
                 </TableCell>
                 
@@ -106,7 +103,7 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       value="true"
                     />
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <Box
                       sx={{
                         alignItems: 'center',
@@ -126,15 +123,15 @@ export const AreaListResults = ({ areas, ...rest }) => {
                         {area.address.city}
                       </Typography>
                     </Box>
-                  </TableCell>
+                  </TableCell> */}
                   {/* <TableCell>
                     {area.email}
                   </TableCell> */}
                   <TableCell>
-                    {`${area.address.state}, ${area.address.country}`}
+                    {`${area.areaName}`}
                   </TableCell>
                   <TableCell>
-                    {area.code}
+                    {area.areaCode}
                   </TableCell>
                   {/* <TableCell>
                     {format(area.createdAt, 'dd/MM/yyyy')}
