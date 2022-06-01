@@ -1,12 +1,29 @@
 import Head from 'next/head';
+import axios from 'axios';
+import React, { useEffect ,useState} from "react"
 import { Box, Container } from '@mui/material';
 import { UserListResults } from '../components/user/user-list-results';
 import { UserListToolbar } from '../components/user/user-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { users } from '../__mocks__/users';
+// import { users } from '../__mocks__/users';
 
-const Users = () => (
-  <>
+
+const Users = () => {
+  const [users, setUsers] = useState([])
+      useEffect(() => {     
+        const getData = async () => {  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/user-list')  
+          .then(res => {  
+            console.log('this res',res.data) 
+            setUsers(res.data) 
+          })  
+          .catch(err => {  
+            console.log(err)  
+          });  
+        }  
+        getData()  
+      }, [])
+  return (<>
     <Head>
       <title>
         users |  Voting App
@@ -26,8 +43,8 @@ const Users = () => (
         </Box>
       </Container>
     </Box>
-  </>
-);
+  </>)
+};
 Users.getLayout = (page) => (
   <DashboardLayout>
     {page}

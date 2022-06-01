@@ -1,12 +1,28 @@
 import Head from 'next/head';
+import axios from 'axios';
+import React, { useEffect ,useState} from "react"
 import { Box, Container } from '@mui/material';
 import { AreaListResults } from '../components/area/area-list-results';
 import { AreaListToolbar } from '../components/area/area-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { areas } from '../__mocks__/areas';
+// import { areas } from '../__mocks__/areas';
 
-const Areas = () => (
-  <>
+const Areas = () => {
+  const [areas, setAreas] = useState([])
+      useEffect(() => {     
+        const getData = async () => {  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/area-list')  
+          .then(res => {  
+            console.log('this res',res.data) 
+            setAreas(res.data) 
+          })  
+          .catch(err => {  
+            console.log(err)  
+          });  
+        }  
+        getData()  
+      }, [])
+  return (<>
     <Head>
       <title>
         Areas |  Voting App
@@ -27,7 +43,7 @@ const Areas = () => (
       </Container>
     </Box>
   </>
-);
+)};
 Areas.getLayout = (page) => (
   <DashboardLayout>
     {page}

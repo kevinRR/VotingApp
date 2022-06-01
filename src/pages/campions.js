@@ -10,17 +10,6 @@ import { DashboardLayout } from '../components/dashboard-layout';
 
 const Campions = () => {
     const [campions, setCampions] = useState([])
-    // const fetchData = () => {
-    //       fetch("https://decentralized-ivoting.herokuapp.com/campaign-list")
-    //         .then(response => {
-    //           console.log(response.json())
-    //           // setCampions(response.json().promise)
-    //         })
-    //         // .then(data => {
-    //         //   setCampions(data)
-    //         // })
-    //     }
-      
         useEffect(() => {     
           const getData = async () => {  
             await axios.get('https://decentralized-ivoting.herokuapp.com/campaign-list')  

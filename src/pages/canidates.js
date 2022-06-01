@@ -1,12 +1,29 @@
 import Head from 'next/head';
 import { Box, Container } from '@mui/material';
+import axios from 'axios';
 import { CanidateListResults } from '../components/canidate/canidate-list-results';
 import { CanidateListToolbar } from '../components/canidate/canidate-list-toolbar';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { canidates } from '../__mocks__/canidates';
+import React, { useEffect ,useState} from "react"
 
-const Canidates = () => (
-  <>
+// import { canidates } from '../__mocks__/canidates';
+
+const Canidates = () => {
+  const [canidates, setCanidates] = useState([])
+      useEffect(() => {     
+        const getData = async () => {  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/candidate-list')  
+          .then(res => {  
+            console.log('this res',res.data) 
+            setCanidates(res.data) 
+          })  
+          .catch(err => {  
+            console.log(err)  
+          });  
+        }  
+        getData()  
+      }, [])
+  return (<>
     <Head>
       <title>
         Canidates | Voting App
@@ -26,8 +43,8 @@ const Canidates = () => (
         </Box>
       </Container>
     </Box>
-  </>
-);
+  </>)
+};
 Canidates.getLayout = (page) => (
   <DashboardLayout>
     {page}
