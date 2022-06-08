@@ -5,13 +5,36 @@ import {
   CardContent,
   TextField,
   InputAdornment,
-  SvgIcon, Typography
+  SvgIcon, Typography,
+
 } from '@mui/material';
+import Link from 'next/link'
+
+import React, { useEffect ,useState} from "react"
+// import {
+//   Link
+// } from "react-router-dom";
+
+// import { useNavigation } from '@react-navigation/native';
+// import { useRouter } from 'next/router';
+
+
+//import { Modal } from 'react-bootstrap';
+
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
+import { redirect } from 'next/dist/server/api-utils';
 
-export const CampionListToolbar = (props) => (
+export const CampionListToolbar = (props) => {
+  // const navigation = useNavigation();
+// const router = useRouter()
+  const [show, setShow] = useState(false);
+  const redirect = () => {
+    router.push('/addcampion')
+  }
+
+  return (<>
   <Box {...props}>
     <Box
       sx={{
@@ -41,12 +64,20 @@ export const CampionListToolbar = (props) => (
         >
           Export
         </Button>
-        <Button
+        
+        {/* <Button
           color="primary"
           variant="contained"
         >
-          Add Campion
-        </Button>
+          Add Canidate
+        </Button> */}
+        <Link href="/addcampion"
+color="primary" type="button"
+          variant="contained">
+        
+          Add Canidate
+        {/* </Button> */}
+        </Link>
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>
@@ -75,4 +106,6 @@ export const CampionListToolbar = (props) => (
       </Card>
     </Box>
   </Box>
-);
+
+  </>)
+};

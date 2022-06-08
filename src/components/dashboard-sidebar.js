@@ -51,8 +51,14 @@ const items = [
   {
     href: '/campions',
     icon: (<CogIcon fontSize="small" />),
-    title: 'Campions'
+    title: 'Campions',
+    visible:false
   },
+  //{
+   // href: '/addcampion',
+   // icon: (<CogIcon fontSize="small" />),
+  //  title: ''
+ // },
   // {
   //   href: '/login',
   //   icon: (<LockIcon fontSize="small" />),

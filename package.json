@@ -1,6 +1,6 @@
 {
-  "name": "material-kit-react",
-  "author": "Devias IO",
+  "name": "Voting App",
+  "author": "Khem Raj Regmi",
   "licence": "MIT",
   "version": "2.0.0",
   "private": false,
@@ -12,6 +12,11 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "@emotion/cache": "^11.5.0",
     "@emotion/react": "^11.5.0",
@@ -21,7 +26,9 @@
     "@mui/lab": "^5.0.0-alpha.53",
     "@mui/material": "^5.0.6",
     "@mui/styles": "^5.0.2",
+    "@mui/x-date-pickers": "^5.0.0-alpha.5",
     "axios": "^0.27.2",
+    "bootstrap": "^5.1.3",
     "chart.js": "^3.5.1",
     "date-fns": "^2.25.0",
     "formik": "^2.1.5",
@@ -30,14 +37,22 @@
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
+    "react-native-gesture-handler": "^2.4.2",
+    "react-navigation": "^4.4.4",
     "react-perfect-scrollbar": "^1.5.8",
+    "react-router": "^6.4.0-pre.2",
+    "react-router-dom": "^6.4.0-pre.2",
     "uuid": "^8.3.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@expo/webpack-config": "^0.16.24",
+    "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
-    "eslint-config-next": "12.0.3-canary.7"
+    "eslint-config-next": "12.0.3-canary.7",
+    "style-loader": "^3.3.1"
   }
 }

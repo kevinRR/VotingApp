@@ -7,33 +7,23 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField
+  TextField,
 } from '@mui/material';
-
-const states = [
-  {
-    value: 'alabama',
-    label: 'Delhi'
-  },
-  {
-    value: 'new-york',
-    label: 'Hariyana'
-  },
-  {
-    value: 'san-francisco',
-    label: 'Utter Pardesh'
-  }
-];
+import axios from 'axios';
+//import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 export const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
-    firstName: 'Khem Raj',
-    lastName: 'Regmi',
-    email: 'demo@khem.io',
-    phone: '',
-    state: 'Dehli',
-    country: 'India'
+    name: '',
+    code: '',
   });
+
+  const [startDateTime, setStartValues] = useState('');
+  const [endDateTime, setEndValues] = useState('');
+
 
   const handleChange = (event) => {
     setValues({
@@ -41,6 +31,26 @@ export const AccountProfileDetails = (props) => {
       [event.target.name]: event.target.value
     });
   };
+
+  const handleChangeStartDateTime = (newValue) => {
+    setStartValues(newValue);
+  };
+
+  const handleChangeEndDateTime = (newValue) => {
+    setEndValues(newValue);
+  };
+console.log('yo date and time ho ',startDateTime,startDateTime)
+
+ function handleSubmit() {
+    // POST request using axios with async/await
+    const data = {  name: values.name,
+                    code: values.code,
+                    endDateTime:startDateTime,
+                    startDateTime:endDateTime,
+                   }
+    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/create-campaign', data)
+    // this.setState({ articleId: response.data.id })
+}
 
   return (
     <form
@@ -50,8 +60,8 @@ export const AccountProfileDetails = (props) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader="lastest technology block chain used"
+          title="Add New Campion"
         />
         <Divider />
         <CardContent>
@@ -67,11 +77,11 @@ export const AccountProfileDetails = (props) => {
               <TextField
                 fullWidth
                 helperText="Please specify the first name"
-                label="First name"
-                name="firstName"
+                label="Campion Name"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>
@@ -82,85 +92,46 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Last name"
-                name="lastName"
+                label="Campion Code"
+                name="code"
                 onChange={handleChange}
                 required
-                value={values.lastName}
+                value={values.code}
                 variant="outlined"
               />
             </Grid>
+           
             <Grid
               item
               md={6}
               xs={12}
             >
-              <TextField
-                fullWidth
-                label="Email Address"
-                name="email"
-                onChange={handleChange}
-                required
-                value={values.email}
-                variant="outlined"
-              />
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateTimePicker
+                    label="Start Date Time"
+                    value={startDateTime}
+                    onChange={handleChangeStartDateTime}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+              </LocalizationProvider>
             </Grid>
+
             <Grid
               item
               md={6}
               xs={12}
             >
-              <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              />
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateTimePicker
+                    label="End Date Time"
+                    value={endDateTime}
+                    onChange={handleChangeEndDateTime}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+              </LocalizationProvider>
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
+            
+           
           </Grid>
         </CardContent>
         <Divider />
@@ -173,7 +144,7 @@ export const AccountProfileDetails = (props) => {
         >
           <Button
             color="primary"
-            variant="contained"
+            variant="contained" onClick={handleSubmit} 
           >
             Save details
           </Button>
@@ -182,3 +153,5 @@ export const AccountProfileDetails = (props) => {
     </form>
   );
 };
+
+
