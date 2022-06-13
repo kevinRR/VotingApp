@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import { AddCampion } from '../components/campion/add-campion';
-import { DashboardLayout } from '../components/dashboard-layout';
+import { AddArea } from '../../../components/area/add-area';
+import { DashboardLayout } from '../../../components/dashboard-layout';
 
-const Account = () => (
+const Addarea = () => (
   <>
     <Head>
       <title>
@@ -22,7 +22,7 @@ const Account = () => (
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Campion
+          Area
         </Typography>
         <Grid
           container
@@ -35,7 +35,7 @@ const Account = () => (
             md={8}
             xs={12}
           >
-            <AddCampion />
+            <AddArea />
           </Grid>
         </Grid>
       </Container>
@@ -43,10 +43,10 @@ const Account = () => (
   </>
 );
 
-Account.getLayout = (page) => (
+Addarea.getLayout = (page) => (
   <DashboardLayout>
     {page}
   </DashboardLayout>
 );
 
-export default Account;
+export default Addarea;

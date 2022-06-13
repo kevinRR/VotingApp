@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import {
   Avatar,
   Box,
+  Button,
   Card,
   Checkbox,
   Table,
@@ -13,11 +14,15 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import Router , {useRouter}  from 'next/router';
 
 export const CampionListResults = ({ campions, ...rest }) => {
+  const router = useRouter()
+ 
   const [selectedCampionIds, setSelectedCampionIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
@@ -92,6 +97,9 @@ export const CampionListResults = ({ campions, ...rest }) => {
                 <TableCell>
                   End Date
                 </TableCell>
+                <TableCell>
+                  Canidates
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -142,6 +150,27 @@ export const CampionListResults = ({ campions, ...rest }) => {
                   <TableCell>
                   {new Date(campion.endDateTime).toLocaleDateString()} {new Date(campion.endDateTime).toLocaleTimeString()}
                   </TableCell>
+                  <TableCell>
+                    <Button
+                      color="primary"
+                      endIcon={<ArrowRightIcon />}
+                      size="small"
+                      variant="text"
+onClick={() => router.push(`/canidates/${campion?.code}`)}
+                    >
+                      View Canidates
+                    </Button>
+                    <Button
+                      color="primary"
+                      endIcon={<ArrowRightIcon />}
+                      size="small"
+                      variant="text"
+onClick={() => router.push(`/areas/${campion?.code}`)}
+                    >
+                      View Areas
+                    </Button>
+                  </TableCell>
+
                 </TableRow>
               ))}
             </TableBody>

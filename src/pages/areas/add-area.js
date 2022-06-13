@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { AccountProfile } from '../components/account/account-profile';
 import { AddCampion } from '../components/campion/add-campion';
 import { DashboardLayout } from '../components/dashboard-layout';
 

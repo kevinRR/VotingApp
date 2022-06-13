@@ -10,8 +10,14 @@ import {
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
+import Router , {useRouter}  from 'next/router';
 
-export const AreaListToolbar = (props) => (
+
+export const AreaListToolbar = (props) => {
+  // const navigation = useNavigation();
+const router = useRouter()
+const slug = router.query.slug
+  return (<>
   <Box {...props}>
     <Box
       sx={{
@@ -44,6 +50,7 @@ export const AreaListToolbar = (props) => (
         <Button
           color="primary"
           variant="contained"
+          onClick={() => router.push(`/areas/add/${slug}`)}
         >
           Add Area
         </Button>
@@ -75,4 +82,6 @@ export const AreaListToolbar = (props) => (
       </Card>
     </Box>
   </Box>
-);
+
+</>)
+};

@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import {
   Avatar,
   Box,
+  Button,
   Card,
   Checkbox,
   Table,
@@ -16,8 +17,14 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import Router , {useRouter}  from 'next/router';
+
 
 export const AreaListResults = ({ areas, ...rest }) => {
+  const router = useRouter()
+
+  const slug = router.query.slug
   const [selectedAreaIds, setSelectedAreaIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
@@ -86,7 +93,9 @@ export const AreaListResults = ({ areas, ...rest }) => {
                 <TableCell>
                   Code
                 </TableCell>
-                
+                <TableCell>
+                  View Candidate
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -103,39 +112,23 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       value="true"
                     />
                   </TableCell>
-                  {/* <TableCell>
-                    <Box
-                      sx={{
-                        alignItems: 'center',
-                        display: 'flex'
-                      }}
-                    >
-                      <Avatar
-                        src={area.avatarUrl}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(area.address.city)}
-                      </Avatar>
-                      <Typography
-                        color="textPrimary"
-                        variant="body1"
-                      >
-                        {area.address.city}
-                      </Typography>
-                    </Box>
-                  </TableCell> */}
-                  {/* <TableCell>
-                    {area.email}
-                  </TableCell> */}
                   <TableCell>
                     {`${area.areaName}`}
                   </TableCell>
                   <TableCell>
                     {area.areaCode}
                   </TableCell>
-                  {/* <TableCell>
-                    {format(area.createdAt, 'dd/MM/yyyy')}
-                  </TableCell> */}
+                  <TableCell>
+                    <Button
+                      color="primary"
+                      endIcon={<ArrowRightIcon />}
+                      size="small"
+                      variant="text"
+                      onClick={() => router.push(`/canidates/${slug},${area.areaCode}`)}
+                    >
+                      View Canidates
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

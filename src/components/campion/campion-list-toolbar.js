@@ -25,10 +25,11 @@ import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
 import { redirect } from 'next/dist/server/api-utils';
+import Router , {useRouter}  from 'next/router';
 
 export const CampionListToolbar = (props) => {
   // const navigation = useNavigation();
-// const router = useRouter()
+const router = useRouter()
   const [show, setShow] = useState(false);
   const redirect = () => {
     router.push('/addcampion')
@@ -60,24 +61,19 @@ export const CampionListToolbar = (props) => {
         </Button>
         <Button
           startIcon={(<DownloadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
+          // eslint-disable-next-line react/jsx-max-props-per-line
+          sx={{ mr: 1 }}  
         >
           Export
         </Button>
         
-        {/* <Button
+        <Button
           color="primary"
           variant="contained"
+          onClick={() => router.push('/addcampion')}
         >
           Add Canidate
-        </Button> */}
-        <Link href="/addcampion"
-color="primary" type="button"
-          variant="contained">
-        
-          Add Canidate
-        {/* </Button> */}
-        </Link>
+        </Button>
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>
