@@ -26,12 +26,15 @@ export const AddCanidate = (props) => {
   const slug = router.query.slug
   console.log('this is slug',slug)
   const [slugData, setSlugData] = useState(slug)
+
   console.log('this is slugData',slugData)
 
   const data = slugData.split(",")
+  const [campaignCode, setCampaignCode] = useState(data[0])
+  const [areaCode, setAreaCode] = useState(data[1])
+
   console.log('this is test',data,slug)
-  const [startDateTime, setStartValues] = useState('');
-  const [endDateTime, setEndValues] = useState('');
+  console.log('this is values',values)
 
 
   const handleChange = (event) => {
@@ -41,25 +44,18 @@ export const AddCanidate = (props) => {
     });
   };
 
-  const handleChangeStartDateTime = (newValue) => {
-    setStartValues(newValue);
-  };
-
-  const handleChangeEndDateTime = (newValue) => {
-    setEndValues(newValue);
-  };
-console.log('yo date and time ho ',startDateTime,startDateTime)
+  
 
  function handleSubmit() {
     // POST request using axios with async/await
     const data = {  
-                  campaignCode: data[0],
-                  areaCode: data[1],
-                  candidateCode: value.candidateCode,
-                  candidateName: value.candidateName,
-                  candidateSign: value.candidateSign
+                  campaignCode: campaignCode,
+                  areaCode: areaCode,
+                  candidateCode: values.candidateCode,
+                  candidateName: values.candidateName,
+                  candidateSign: values.candidateSign
                    }
-    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-campaign', data)
+    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-candidate', data)
     router.push(`/canidates/${slugData}`)
     // this.setState({ articleId: response.data.id })
 }
