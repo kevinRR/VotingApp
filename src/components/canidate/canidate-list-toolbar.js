@@ -10,8 +10,22 @@ import {
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
+import Router , {useRouter}  from 'next/router';
+import React, { useEffect ,useState} from "react"
 
-export const CanidateListToolbar = (props) => (
+
+export const CanidateListToolbar = (props) =>  {
+
+  const router = useRouter()
+  const slug = router.query.slug
+  console.log('this is slug',slug)
+  const [slugData, setSlugData] = useState(slug)
+  console.log('this is slugData',slugData)
+
+  const data = slugData.split(",")
+  console.log('this is test',data,slug)
+
+  return (<>
   <Box {...props}>
     <Box
       sx={{
@@ -44,6 +58,7 @@ export const CanidateListToolbar = (props) => (
         <Button
           color="primary"
           variant="contained"
+          onClick={() => router.push(`/canidates/add/${slugData}`)}
         >
           Add Canidate
         </Button>
@@ -75,4 +90,6 @@ export const CanidateListToolbar = (props) => (
       </Card>
     </Box>
   </Box>
-);
+
+</>)
+};

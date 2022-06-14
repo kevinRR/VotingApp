@@ -96,10 +96,10 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {canidates.slice(0, limit).map((canidate) => (
+              {canidates.slice(0, limit).map((canidate,key) => (
                 <TableRow
                   hover
-                  key={canidate.id}
+                  key={key}
                   selected={selectedCanidateIds.indexOf(canidate.id) !== -1}
                 >
                   <TableCell padding="checkbox">

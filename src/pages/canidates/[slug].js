@@ -14,15 +14,16 @@ const Canidates = () => {
   const router = useRouter()
   const slug = router.query.slug
   console.log('this is slug',slug)
-  const [slugData, setSlugData] = useState([slug])
+  const [slugData, setSlugData] = useState(slug)
+  console.log('this is slugData',slugData)
 
-  const data = slug.split(",")
-  console.log('this is test',data)
+  const data = slugData.split(",")
+  console.log('this is test',data,slug)
 
   const [canidates, setCanidates] = useState([])
       useEffect(() => {     
         const getData = async () => {  
-          await axios.get(`https://decentralized-ivoting.herokuapp.com/candidate-list?campaignCode=${slugData[0]}&areaCode=${slugData[1]}`)  
+          await axios.get(`https://decentralized-ivoting.herokuapp.com/candidate-list?campaignCode=${data[0]}&areaCode=${data[1]}`)  
           .then(res => {  
             console.log('this res',res.data) 
             setCanidates(res.data) 
@@ -49,7 +50,8 @@ const Canidates = () => {
       <Container maxWidth={false}>
         <CanidateListToolbar />
         <Box sx={{ mt: 3 }}>
-          <CanidateListResults canidates={canidates} />
+          <CanidateListResults canidates={canidates}
+data={data} />
         </Box>
       </Container>
     </Box>

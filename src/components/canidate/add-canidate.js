@@ -14,13 +14,22 @@ import axios from 'axios';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import Router , {useRouter}  from 'next/router';
 
-export const AddCampion = (props) => {
+export const AddCanidate = (props) => {
   const [values, setValues] = useState({
-    name: '',
-    code: '',
+    candidateCode: '',
+    candidateName: '',
+    candidateSign: ''
   });
+  const router = useRouter()
+  const slug = router.query.slug
+  console.log('this is slug',slug)
+  const [slugData, setSlugData] = useState(slug)
+  console.log('this is slugData',slugData)
 
+  const data = slugData.split(",")
+  console.log('this is test',data,slug)
   const [startDateTime, setStartValues] = useState('');
   const [endDateTime, setEndValues] = useState('');
 
@@ -43,13 +52,15 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
 
  function handleSubmit() {
     // POST request using axios with async/await
-    const data = {  name: values.name,
-                    code: values.code,
-                    endDateTime:startDateTime,
-                    startDateTime:endDateTime,
+    const data = {  
+                  campaignCode: data[0],
+                  areaCode: data[1],
+                  candidateCode: value.candidateCode,
+                  candidateName: value.candidateName,
+                  candidateSign: value.candidateSign
                    }
-    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/create-campaign', data)
-    router.push(`/campions`)
+    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-campaign', data)
+    router.push(`/canidates/${slugData}`)
     // this.setState({ articleId: response.data.id })
 }
 
@@ -62,7 +73,7 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
       <Card>
         <CardHeader
           subheader=""
-          title="Add New Campion"
+          title="Add New Canidate"
         />
         <Divider />
         <CardContent>
@@ -77,12 +88,12 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Campion Name"
-                label="Campion Name"
-                name="name"
+                helperText="Please specify the Canidate Name"
+                label="Canidate Name"
+                name="candidateName"
                 onChange={handleChange}
                 required
-                value={values.name}
+                value={values.candidateName}
                 variant="outlined"
               />
             </Grid>
@@ -93,12 +104,12 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Campion Code"
-                label="Campion Code"
-                name="code"
+                helperText="Please specify the Canidate Code"
+                label="Canidate Code"
+                name="candidateCode"
                 onChange={handleChange}
                 required
-                value={values.code}
+                value={values.candidateCode}
                 variant="outlined"
               />
             </Grid>
@@ -108,29 +119,16 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
               md={6}
               xs={12}
             >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    label="Start Date Time"
-                    value={startDateTime}
-                    onChange={handleChangeStartDateTime}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-              </LocalizationProvider>
-            </Grid>
-
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    label="End Date Time"
-                    value={endDateTime}
-                    onChange={handleChangeEndDateTime}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-              </LocalizationProvider>
+              <TextField
+                fullWidth
+                helperText="Please specify the Canidate Sign"
+                label="Canidate Sign"
+                name="candidateSign"
+                onChange={handleChange}
+                required
+                value={values.candidateSign}
+                variant="outlined"
+              />
             </Grid>
             
            

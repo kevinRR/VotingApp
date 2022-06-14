@@ -99,10 +99,10 @@ export const AreaListResults = ({ areas, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {areas.slice(0, limit).map((area) => (
+              {areas.slice(0, limit).map((area,key) => (
                 <TableRow
                   hover
-                  key={area.id}
+                  key={key}
                   selected={selectedAreaIds.indexOf(area.id) !== -1}
                 >
                   <TableCell padding="checkbox">
