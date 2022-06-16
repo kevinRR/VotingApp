@@ -2,8 +2,15 @@ import Head from 'next/head';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { AddCanidate } from '../../../components/canidate/add-canidate';
 import { DashboardLayout } from '../../../components/dashboard-layout';
+import React, { useEffect ,useState} from "react"
+import Router , {useRouter}  from 'next/router';
 
-const Canidate = () => (
+const Canidate = () => {
+  const router = useRouter()
+  const slug = router.query.slug
+  console.log('this is slug',slug)
+  const [slugData, setSlugData] = useState(slug)
+  return (
   <>
     <Head>
       <title>
@@ -35,13 +42,14 @@ const Canidate = () => (
             md={8}
             xs={12}
           >
-            <AddCanidate />
+            <AddCanidate slugData={slugData}/>
           </Grid>
         </Grid>
       </Container>
     </Box>
   </>
-);
+  )
+};
 
 Canidate.getLayout = (page) => (
   <DashboardLayout>

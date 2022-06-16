@@ -143,17 +143,11 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                         display: 'flex'
                       }}
                     >
-                      <Avatar
-                        src={canidate.candidateSign}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(canidate.candidateName)}
-                      </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {canidate.candidateName}
+                        {canidate.candidateSign}
                       </Typography>
                     </Box>
                   </TableCell>

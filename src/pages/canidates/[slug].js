@@ -10,10 +10,9 @@ import Router , {useRouter}  from 'next/router';
 // import { canidates } from '../__mocks__/canidates';
 
 const Canidates = () => {
-
+  // const isBrowser = window && window.addEventListener(.......blabla)
   const router = useRouter()
   const slug = router.query.slug
-  console.log('this is slug',slug)
   const [slugData, setSlugData] = useState(slug)
   console.log('this is slugData',slugData)
 

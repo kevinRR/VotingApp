@@ -16,20 +16,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Router , {useRouter}  from 'next/router';
 
-export const AddCanidate = (props) => {
+export const AddCanidate = ({ slugData, props }) => {
   const [values, setValues] = useState({
     candidateCode: '',
     candidateName: '',
     candidateSign: ''
   });
-  const router = useRouter()
-  const slug = router.query.slug
-  console.log('this is slug',slug)
-  const [slugData, setSlugData] = useState(slug)
+  const [slug, setSlugData] = useState(slugData)
 
-  console.log('this is slugData',slugData)
+  // console.log('this is slugData',slugData)
 
-  const data = slugData.split(",")
+  const data = slug.split(",")
   const [campaignCode, setCampaignCode] = useState(data[0])
   const [areaCode, setAreaCode] = useState(data[1])
 
