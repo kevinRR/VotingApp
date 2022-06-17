@@ -5,8 +5,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Facebook as FacebookIcon } from '../icons/facebook';
-import { Google as GoogleIcon } from '../icons/google';
+import auth0 from '../utils/auth0';
+
 
 const Login = () => {
   const router = useRouter();
@@ -30,7 +30,14 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: () => {
-      router.push('/');
+      async function login(req, res) {
+          try {
+              await auth0.handleLogin(req, res);
+          } catch (error) {
+              res.status(error.status || 500).end(error.message);
+          }
+      }
+      // router.push('/');
     }
   });
 
