@@ -128,6 +128,15 @@ export const AreaListResults = ({ areas, ...rest }) => {
                     >
                       View Canidates
                     </Button>
+                    <Button
+                      color="primary"
+                      endIcon={<ArrowRightIcon />}
+                      size="small"
+                      variant="text"
+                      onClick={() => router.push(`/votterlist/add/${area.areaCode}`)}
+                    >
+                      Add Votter
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
