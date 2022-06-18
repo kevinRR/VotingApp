@@ -5,21 +5,21 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import auth0 from '../utils/auth0';
+import axios from 'axios';
+
+// import auth0 from '../utils/auth0';
 
 
 const Login = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: 'demo@khem.io',
-      password: 'Password123'
+      username: 'john',
+      password: 'password123admin'
     },
     validationSchema: Yup.object({
-      email: Yup
+      username: Yup
         .string()
-        .email(
-          'Must be a valid email')
         .max(255)
         .required(
           'Email is required'),
@@ -29,16 +29,21 @@ const Login = () => {
         .required(
           'Password is required')
     }),
-    onSubmit: () => {
-      async function login(req, res) {
-          try {
-              await auth0.handleLogin(req, res);
-          } catch (error) {
-              res.status(error.status || 500).end(error.message);
-          }
+    onSubmit: async () => {
+      // const response = axios.post("/login", initialValues);
+      try {
+        await axios
+          .post("https://decentralized-ivoting.herokuapp.com/login/",  {
+            username: 'john',
+            password: 'password123admin'
+          })
+          .then((data) => {
+            console.log("data", data);
+          });
+      } catch (e) {
+        console.log(e);
       }
-      // router.push('/');
-    }
+    },
   });
 
   return (
@@ -135,16 +140,16 @@ const Login = () => {
               </Typography> */}
             </Box>
             <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
+              error={Boolean(formik.touched.username && formik.errors.username)}
               fullWidth
-              helperText={formik.touched.email && formik.errors.email}
+              helperText={formik.touched.username && formik.errors.username}
               label="Email Address"
               margin="normal"
-              name="email"
+              name="username"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
+              type="text"
+              value={formik.values.username}
               variant="outlined"
             />
             <TextField
