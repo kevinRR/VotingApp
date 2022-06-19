@@ -3,21 +3,39 @@ import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } fro
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import PhoneIcon from '@mui/icons-material/Phone';
 import TabletIcon from '@mui/icons-material/Tablet';
+import React, { useEffect ,useState} from "react"
+import axios from 'axios';
+
+
 
 export const VotingInfo = (props) => {
+  const [campions, setCampions] = useState([])
+      useEffect(() => {     
+        const getData = async () => {  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/campaign-list')  
+          .then(res => {  
+            console.log('this res',res.data) 
+            setCampions(res.data) 
+          })  
+          .catch(err => {  
+            console.log(err)  
+          });  
+        }  
+        getData()  
+      }, [])
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [3,1],
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Candidates A', 'Candidates B', 'Candidates C']
+    labels: ['Antara', 'Emily']
   };
 
   const options = {
@@ -45,22 +63,22 @@ export const VotingInfo = (props) => {
   const devices = [
     {
       title: 'Candidates A',
-      value: 63,
+      value: (3/4)*100,
       icon: LaptopMacIcon,
       color: '#3F51B5'
     },
     {
       title: 'Candidates B',
-      value: 15,
+      value: (1/4)*100,
       icon: TabletIcon,
       color: '#E53935'
     },
-    {
-      title: 'Candidates C',
-      value: 23,
-      icon: PhoneIcon,
-      color: '#FB8C00'
-    }
+    // {
+    //   title: 'Candidates C',
+    //   value: 23,
+    //   icon: PhoneIcon,
+    //   color: '#FB8C00'
+    // }
   ];
 
   return (

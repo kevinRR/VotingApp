@@ -8,7 +8,7 @@ export const MyAlert = (props) => {
     useEffect(() => {
       const timeout = setTimeout(() => {
         props.setShowAlert(false);  // Disable your alert after 5 seconds
-       }, 5000);
+       }, 20000);
  
       return () => {
         clearTimeout(timeout); // Clears timer in case you close your alert somewhere else.
@@ -17,9 +17,8 @@ export const MyAlert = (props) => {
  return (
     <div>
        
-    <Alert severity="success"
-    color="info">This
-     is a success alert — check it out!
+    <Alert severity="success" icon={false} 
+    color="success">Success ! New Candidate Added Sucessfully
   </Alert> 
   </div>
  )

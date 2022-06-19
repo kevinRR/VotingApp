@@ -6,10 +6,20 @@ import * as Yup from "yup";
 import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
+import { MyAlert } from '../components/MyAlert';
+import React, { useEffect ,useState} from "react"
+
 
 // import auth0 from '../utils/auth0';
 
 const Login = () => {
+  const [alertSeverity, setAlertSeverity] = useState('')
+  const [alertMessage, setAlertMessage] = useState('')
+  const [showAlert, setShowAlert] = useState(true)
+  {showAlert && 
+    <MyAlert severity={alertSeverity}
+message={alertMessage}
+setShowAlert = {setShowAlert}/> }
   let data;
   const router = useRouter();
 
@@ -47,6 +57,7 @@ const Login = () => {
       <Head>
         <title>Login | Voting App</title>
       </Head>
+      
       <Box
         component="main"
         sx={{
@@ -57,6 +68,10 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
+        {showAlert && 
+                        <MyAlert severity={alertSeverity}
+message={alertMessage}
+setShowAlert = {setShowAlert}/> }
           {/* <NextLink href="/" passHref>
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               Dashboard

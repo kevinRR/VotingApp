@@ -17,6 +17,9 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Router , {useRouter}  from 'next/router';
 
 export const AddCanidate = ({ slugData, props }) => {
+  const [alertSeverity, setAlertSeverity] = useState('')
+        const [alertMessage, setAlertMessage] = useState('')
+        const [showAlert, setShowAlert] = useState(false)
   const router = useRouter()
   // router.push(`/canidates/${slugData}`)
   const [values, setValues] = useState({
