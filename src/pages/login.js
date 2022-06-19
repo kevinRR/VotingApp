@@ -57,11 +57,11 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-          <NextLink href="/" passHref>
+          {/* <NextLink href="/" passHref>
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               Dashboard
             </Button>
-          </NextLink>
+          </NextLink> */}
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
@@ -115,7 +115,7 @@ const Login = () => {
               error={Boolean(formik.touched.username && formik.errors.username)}
               fullWidth
               helperText={formik.touched.username && formik.errors.username}
-              label="Email Address"
+              label="Email/Username"
               margin="normal"
               name="username"
               onBlur={formik.handleBlur}
