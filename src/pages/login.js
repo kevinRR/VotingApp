@@ -1,45 +1,41 @@
-import Head from 'next/head';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import axios from 'axios';
+import Head from "next/head";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import axios from "axios";
 
 // import auth0 from '../utils/auth0';
 
-
 const Login = () => {
+  let data;
   const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
-      username: 'john',
-      password: 'password123admin'
+      username: "john",
+      password: "password123admin",
     },
     validationSchema: Yup.object({
-      username: Yup
-        .string()
-        .max(255)
-        .required(
-          'Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required(
-          'Password is required')
+      username: Yup.string().max(255).required("Email is required"),
+      password: Yup.string().max(255).required("Password is required"),
     }),
     onSubmit: async () => {
-      // const response = axios.post("/login", initialValues);
       try {
-        await axios
-          .post("https://decentralized-ivoting.herokuapp.com/login/",  {
-            username: 'john',
-            password: 'password123admin'
-          })
-          .then((data) => {
-            console.log("data", data);
-          });
+        const res = await axios.post("https://decentralized-ivoting.herokuapp.com/login/", {
+          username: "john",
+          password: "password123admin",
+        });
+        data = res.data;
+        console.log("data", data);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(data));
+        if (data.username === "john") {
+          router.push("/dashboard");
+        }
       } catch (e) {
         console.log(e);
       }
@@ -54,49 +50,29 @@ const Login = () => {
       <Box
         component="main"
         sx={{
-          alignItems: 'center',
-          display: 'flex',
+          alignItems: "center",
+          display: "flex",
           flexGrow: 1,
-          minHeight: '100%'
+          minHeight: "100%",
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
-            href="/"
-            passHref
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
+          <NextLink href="/" passHref>
+            <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               Dashboard
             </Button>
           </NextLink>
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
-              <Typography
-                color="textPrimary"
-                variant="h4"
-              >
+              <Typography color="textPrimary" variant="h4">
                 Sign in
               </Typography>
-              <Typography
-                color="textSecondary"
-                gutterBottom
-                variant="body2"
-              >
+              <Typography color="textSecondary" gutterBottom variant="body2">
                 Sign in on the internal platform
               </Typography>
             </Box>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
                 {/* <Button
                   color="info"
                   fullWidth
@@ -108,11 +84,7 @@ const Login = () => {
                   Login with Facebook
                 </Button> */}
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
+              <Grid item xs={12} md={6}>
                 {/* <Button
                   fullWidth
                   color="error"
@@ -128,7 +100,7 @@ const Login = () => {
             <Box
               sx={{
                 pb: 1,
-                pt: 3
+                pt: 3,
               }}
             >
               {/* <Typography
