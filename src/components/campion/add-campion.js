@@ -14,12 +14,21 @@ import axios from 'axios';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import Alert from '@mui/material/Alert';
+import Router , {useRouter}  from 'next/router';
+
+
 
 export const AddCampion = (props) => {
+  const [alertSeverity, setAlertSeverity] = useState('')
+        const [alertMessage, setAlertMessage] = useState('')
+        const [showAlert, setShowAlert] = useState(false)
+  
   const [values, setValues] = useState({
     name: '',
     code: '',
   });
+  const router = useRouter()
 
   const [startDateTime, setStartValues] = useState('');
   const [endDateTime, setEndValues] = useState('');
@@ -45,10 +54,17 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
     // POST request using axios with async/await
     const data = {  name: values.name,
                     code: values.code,
-                    endDateTime:startDateTime,
-                    startDateTime:endDateTime,
+                    endDateTime:endDateTime,
+                    startDateTime:startDateTime,
                    }
     const response =  axios.post('https://decentralized-ivoting.herokuapp.com/create-campaign', data)
+   
+    setAlertMessage(
+      'You have succesfully registered! Please check your email for a verification link.'
+  )
+  setAlertSeverity('success')
+  setShowAlert(true)
+ 
     router.push(`/campions`)
     // this.setState({ articleId: response.data.id })
 }

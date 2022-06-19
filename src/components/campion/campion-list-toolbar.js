@@ -9,7 +9,7 @@ import {
 
 } from '@mui/material';
 import Link from 'next/link'
-
+import { MyAlert } from '../myAlert';
 import React, { useEffect ,useState} from "react"
 // import {
 //   Link
@@ -25,15 +25,31 @@ import { Search as SearchIcon } from '../../icons/search';
 import { redirect } from 'next/dist/server/api-utils';
 import Router , {useRouter}  from 'next/router';
 
+
+
 export const CampionListToolbar = (props) => {
   // const navigation = useNavigation();
+  const [alertSeverity, setAlertSeverity] = useState('')
+  const [alertMessage, setAlertMessage] = useState('')
+  const [showAlert, setShowAlert] = useState(true)
+ 
 const router = useRouter()
   const [show, setShow] = useState(false);
   const redirect = () => {
+    setAlertMessage(
+      'You have succesfully registered! Please check your email for a verification link.'
+  )
+  setAlertSeverity('success')
+  setShowAlert(true)
     router.push('/addcampion')
   }
 
   return (<>
+                    {showAlert && 
+                        <MyAlert severity={alertSeverity}
+message={alertMessage}
+setShowAlert = {setShowAlert}/> }
+                    
   <Box {...props}>
     <Box
       sx={{
