@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 export const VotingInfo = (props) => {
+  
   const [campions, setCampions] = useState([])
       useEffect(() => {     
         const getData = async () => {  

@@ -17,9 +17,9 @@ export const MyAlert = (props) => {
  return (
     <div>
        
-    <Alert severity="success" icon={false} 
+    {/* <Alert severity="success" icon={false} 
     color="success">Success ! New Candidate Added Sucessfully
-  </Alert> 
+  </Alert>  */}
   </div>
  )
 
