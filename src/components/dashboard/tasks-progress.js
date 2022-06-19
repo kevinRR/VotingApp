@@ -26,7 +26,7 @@ export const TasksProgress = (props) => (
             color="textPrimary"
             variant="h4"
           >
-            10000K
+            10
           </Typography>
         </Grid>
         <Grid item>

@@ -40,7 +40,7 @@ export const CanidateListToolbar = (props) =>  {
         sx={{ m: 1 }}
         variant="h4"
       >
-        Canidates
+        Candidate
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
@@ -48,7 +48,7 @@ export const CanidateListToolbar = (props) =>  {
           variant="contained"
           onClick={() => router.push(`/canidates/add/${slugData}`)}
         >
-          Add Canidate
+          Add Candidate
         </Button>
       </Box>
     </Box>

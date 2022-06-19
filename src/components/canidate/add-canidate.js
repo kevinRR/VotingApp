@@ -66,7 +66,7 @@ export const AddCanidate = ({ slugData, props }) => {
       <Card>
         <CardHeader
           subheader=""
-          title="Add New Canidate"
+          title="Add New Candidate"
         />
         <Divider />
         <CardContent>
@@ -81,8 +81,8 @@ export const AddCanidate = ({ slugData, props }) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Canidate Name"
-                label="Canidate Name"
+                helperText="Please specify the Candidate Name"
+                label="Candidate Name"
                 name="candidateName"
                 onChange={handleChange}
                 required
@@ -97,8 +97,8 @@ export const AddCanidate = ({ slugData, props }) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Canidate Code"
-                label="Canidate Code"
+                helperText="Please specify the Candidate Code"
+                label="Candidate Code"
                 name="candidateCode"
                 onChange={handleChange}
                 required
@@ -114,8 +114,8 @@ export const AddCanidate = ({ slugData, props }) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Canidate Sign"
-                label="Canidate Sign"
+                helperText="Please specify the Candidate Sign"
+                label="Candidate Sign"
                 name="candidateSign"
                 onChange={handleChange}
                 required

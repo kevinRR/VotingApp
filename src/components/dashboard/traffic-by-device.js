@@ -17,7 +17,7 @@ export const TrafficByDevice = (props) => {
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Candidates A', 'Candidates B', 'Candidates C']
   };
 
   const options = {
@@ -44,19 +44,19 @@ export const TrafficByDevice = (props) => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Candidates A',
       value: 63,
       icon: LaptopMacIcon,
       color: '#3F51B5'
     },
     {
-      title: 'Tablet',
+      title: 'Candidates B',
       value: 15,
       icon: TabletIcon,
       color: '#E53935'
     },
     {
-      title: 'Mobile',
+      title: 'Candidates C',
       value: 23,
       icon: PhoneIcon,
       color: '#FB8C00'
@@ -65,9 +65,9 @@ export const TrafficByDevice = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Other Information" />
+      <CardHeader title="Voting information" />
       <Divider />
-      {/* <CardContent>
+      <CardContent>
         <Box
           sx={{
             height: 300,
@@ -88,7 +88,7 @@ export const TrafficByDevice = (props) => {
         >
           {devices.map(({
             color,
-            icon: Icon,
+            // icon: Icon,
             title,
             value
           }) => (
@@ -99,7 +99,7 @@ export const TrafficByDevice = (props) => {
                 textAlign: 'center'
               }}
             >
-              <Icon color="action" />
+              {/* <Icon color="action" /> */}
               <Typography
                 color="textPrimary"
                 variant="body1"
@@ -116,7 +116,7 @@ export const TrafficByDevice = (props) => {
             </Box>
           ))}
         </Box>
-      </CardContent> */}
+      </CardContent>
     </Card>
   );
 };

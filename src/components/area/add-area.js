@@ -73,8 +73,8 @@ export const AddArea = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Area areaName"
-                label="Area area Name"
+                helperText="Please specify the Area Name"
+                label="Area Name"
                 name="areaName"
                 onChange={handleChange}
                 required
@@ -89,8 +89,8 @@ export const AddArea = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Area areaCode"
-                label="Area area Code"
+                helperText="Please specify the Area Code"
+                label="Area Code"
                 name="areaCode"
                 onChange={handleChange}
                 required

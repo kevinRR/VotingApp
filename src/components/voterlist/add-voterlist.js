@@ -53,7 +53,7 @@ export const AddVotterList = (props) => {
       <Card>
         <CardHeader
           subheader=""
-          title="Add New Votter List"
+          title="Add New Voter List"
         />
         <Divider />
         <CardContent>
@@ -68,7 +68,7 @@ export const AddVotterList = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Votter ID"
+                helperText="Please specify the Voter ID"
                 label="Voter Id"
                 name="voterId"
                 onChange={handleChange}
@@ -84,8 +84,8 @@ export const AddVotterList = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Votter Phonenumber"
-                label="voter ID Phone Number"
+                helperText="Please specify the Voter Phonenumber"
+                label="Voter ID Phone Number"
                 name="phoneNumber"
                 onChange={handleChange}
                 required

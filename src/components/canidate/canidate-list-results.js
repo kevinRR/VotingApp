@@ -16,6 +16,8 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+// import { UserCircle as UserCircleIcon } from '../icons/user-circle';
+
 
 export const CanidateListResults = ({ canidates, ...rest }) => {
   const [selectedCanidateIds, setSelectedCanidateIds] = useState([]);
@@ -87,10 +89,10 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                   Email
                 </TableCell> */}
                 <TableCell>
-                  Canidate Code
+                  Candidate Code
                 </TableCell>
                 <TableCell>
-                 Canidate Sign
+                Candidate Sign
                 </TableCell>
               
               </TableRow>
@@ -137,17 +139,27 @@ export const CanidateListResults = ({ canidates, ...rest }) => {
                     {canidate.candidateCode}
                   </TableCell>
                   <TableCell>
-                    <Box
+                  <Box
                       sx={{
                         alignItems: 'center',
                         display: 'flex'
                       }}
                     >
+                      <Avatar
+                        sx={{
+                          height: 40,
+                          width: 40,
+                          ml: 1
+                        }}
+                        src={canidate.candidateSign}
+                      >
+                        {/* <UserCircleIcon fontSize="small" /> */}
+                      </Avatar>
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {canidate.candidateSign}
+                        {/* {canidate.candidateSign} */}
                       </Typography>
                     </Box>
                   </TableCell>

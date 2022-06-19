@@ -16,7 +16,7 @@ export const TotalProfit = (props) => (
             gutterBottom
             variant="overline"
           >
-            CAMPAING
+            CAMPAIGN
           </Typography>
           <Typography
             color="textPrimary"

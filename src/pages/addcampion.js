@@ -22,7 +22,7 @@ const Account = () => (
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Campion
+          Campaign
         </Typography>
         <Grid
           container

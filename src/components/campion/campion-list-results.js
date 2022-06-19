@@ -156,15 +156,6 @@ export const CampionListResults = ({ campions, ...rest }) => {
                       endIcon={<ArrowRightIcon />}
                       size="small"
                       variant="text"
-onClick={() => router.push(`/canidates/${campion?.code}`)}
-                    >
-                      View Canidates
-                    </Button>
-                    <Button
-                      color="primary"
-                      endIcon={<ArrowRightIcon />}
-                      size="small"
-                      variant="text"
 onClick={() => router.push(`/areas/${campion?.code}`)}
                     >
                       View Areas

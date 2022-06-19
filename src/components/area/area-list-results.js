@@ -126,7 +126,7 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       variant="text"
                       onClick={() => router.push(`/canidates/${slug},${area.areaCode}`)}
                     >
-                      View Canidates
+                      View Candidates
                     </Button>
                     <Button
                       color="primary"
@@ -135,7 +135,7 @@ export const AreaListResults = ({ areas, ...rest }) => {
                       variant="text"
                       onClick={() => router.push(`/votterlist/add/${area.areaCode}`)}
                     >
-                      Add Votter
+                      Add Voter
                     </Button>
                   </TableCell>
                 </TableRow>

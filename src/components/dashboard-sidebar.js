@@ -28,30 +28,30 @@ const items = [
     title: 'Admin User'
   },
 
-  {
-    href: '/voterlists',
-    icon: (<UserAddIcon fontSize="small" />),
-    title: 'VoterList'
-  },
-  {
-    href: '/areas',
-    icon: (<UsersIcon fontSize="small" />),
-    title: 'Area'
-  },
+  // {
+  //   href: '/voterlists',
+  //   icon: (<UserAddIcon fontSize="small" />),
+  //   title: 'Voter List'
+  // },
+  // {
+  //   href: '/areas',
+  //   icon: (<UsersIcon fontSize="small" />),
+  //   title: 'Area'
+  // },
   // {
   //   href: '/products',
   //   icon: (<ShoppingBagIcon fontSize="small" />),
   //   title: 'Products'
   // },
-  {
-    href: '/canidates',
-    icon: (<UserIcon fontSize="small" />),
-    title: 'Canidates'
-  },
+  // {
+  //   href: '/Candidates',
+  //   icon: (<UserIcon fontSize="small" />),
+  //   title: 'Canidates'
+  // },
   {
     href: '/campions',
     icon: (<CogIcon fontSize="small" />),
-    title: 'Campions',
+    title: 'Campaign',
     visible:false
   },
   //{

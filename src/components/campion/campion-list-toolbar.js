@@ -48,7 +48,7 @@ const router = useRouter()
         sx={{ m: 1 }}
         variant="h4"
       >
-        Campions
+        Campaign
       </Typography>
       <Box sx={{ m: 1 }}>
         <Button
@@ -56,7 +56,7 @@ const router = useRouter()
           variant="contained"
           onClick={() => router.push('/addcampion')}
         >
-          Add Canidate
+          Add Campaign
         </Button>
       </Box>
     </Box>

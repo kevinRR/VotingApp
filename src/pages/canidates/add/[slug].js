@@ -29,7 +29,7 @@ const Canidate = () => {
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Canidate
+          Candidate
         </Typography>
         <Grid
           container

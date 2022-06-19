@@ -62,7 +62,7 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
       <Card>
         <CardHeader
           subheader=""
-          title="Add New Campion"
+          title="Add New Campaign"
         />
         <Divider />
         <CardContent>
@@ -77,8 +77,8 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Campion Name"
-                label="Campion Name"
+                helperText="Please specify the Campaign Name"
+                label="Campaign Name"
                 name="name"
                 onChange={handleChange}
                 required
@@ -93,8 +93,8 @@ console.log('yo date and time ho ',startDateTime,startDateTime)
             >
               <TextField
                 fullWidth
-                helperText="Please specify the Campion Code"
-                label="Campion Code"
+                helperText="Please specify the Campaign Code"
+                label="Campaign Code"
                 name="code"
                 onChange={handleChange}
                 required

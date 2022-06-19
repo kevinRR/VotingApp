@@ -7,7 +7,7 @@ const Addvotterlist = () => (
   <>
     <Head>
       <title>
-        Add votterlist | Voting App
+        Add voterlist | Voting App
       </title>
     </Head>
     <Box
@@ -22,7 +22,7 @@ const Addvotterlist = () => (
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Votter List
+          Voter List
         </Typography>
         <Grid
           container
