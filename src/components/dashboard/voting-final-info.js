@@ -9,34 +9,54 @@ import axios from 'axios';
 
 
 export const VotingInfo = (props) => {
-  
-  const [campions, setCampions] = useState([])
+  const user = JSON.parse(localStorage.getItem('user'));
+  const datas = {  
+    campaignCode: "first-demo",
+    areaCode: "wassipur",
+     }
+  // console.log('this is user',user)
+  const [finalData, setFinalData] = useState([])
+
+  const [labels, setLabels] = useState([])
+  const [votes, setVotes] = useState([])
+
       useEffect(() => {     
         const getData = async () => {  
-          await axios.get('https://decentralized-ivoting.herokuapp.com/campaign-list')  
+          await axios.get('https://decentralized-ivoting.herokuapp.com/details?campaignCode=first-demo&areaCode=wassipur')  
           .then(res => {  
             console.log('this res',res.data) 
-            setCampions(res.data) 
+            setFinalData(res.data) 
+            const label =finalData.map((key) => 
+             key.name
+             );
+             const vote =finalData.map((key) => 
+             key.votes
+             );
+             setLabels(label);
+             setVotes(vote);
+
+             console.log('this is lebel',label)
           })  
           .catch(err => {  
             console.log(err)  
           });  
         }  
         getData()  
-      }, [])
+      }, [finalData])
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [3,1],
+        data: votes,
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00'],
         borderWidth: 8,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Antara', 'Emily']
+    labels: labels
+
   };
 
   const options = {
