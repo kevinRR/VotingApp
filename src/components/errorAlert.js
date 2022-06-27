@@ -2,7 +2,7 @@ import React, { useEffect ,useState} from "react"
 import Alert from '@mui/material/Alert';
 
 
-export const MyAlert = ({props,severity}) => {
+export const ErrorAlert = ({props,severity}) => {
     const [showAlert, setShowAlert] = useState(true)
 // console.log('this is test',message,severity,setShowAlert)
     useEffect(() => {
@@ -19,11 +19,11 @@ export const MyAlert = ({props,severity}) => {
     <div>
     {severity==='success' && 
     <Alert severity="success" icon={false} 
-      color="success">Success !Data Added Sucessfully
+      color="success">Login Successfull 
     </Alert>  }
     {severity==='error' && 
     <Alert severity="error" icon={false} 
-      color="error">Data Already exist !!
+      color="error">Invalid credential please check your credential
     </Alert>  }
     
   </div>

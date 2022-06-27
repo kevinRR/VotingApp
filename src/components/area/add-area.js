@@ -15,10 +15,15 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Router , {useRouter}  from 'next/router';
+import { MyAlert } from '../myAlert';
+
 
 export const AddArea = (props) => {
   const router = useRouter()
 
+  const [alertSeverity, setAlertSeverity] = useState('')
+  const [alertMessage, setAlertMessage] = useState('')
+  const [showAlert, setShowAlert] = useState(false)
   const slug = router.query.slug
   console.log('this is slug',slug)
   const [values, setValues] = useState({
@@ -35,21 +40,57 @@ export const AddArea = (props) => {
     });
   };
 
-
+  const addData = async (data) => {  
+    await axios.post('https://decentralized-ivoting.herokuapp.com/add-area', data) 
+    .then(res => {  
+      console.log('this test res',res.data) 
+      clearTimeout(timeout);
+      setAlertSeverity('');
+      setAlertSeverity('success')
+      setShowAlert(true);
+      const timeout = setTimeout(() => {
+        setShowAlert(false);
+        router.push(`/areas/${slug}`)
+       }, 1000);
+    })  
+    .catch(err => {  
+      console.log(err)          
+      console.log('this test res',err.message) 
+      setAlertSeverity('');
+      setAlertSeverity('error');
+      setShowAlert(true);
+      clearTimeout(timeout);
+      const timeout = setTimeout(() => {
+        setShowAlert(false);
+        // router.push(`/areas/${slug}`)
+       }, 1000);
+    });  
+  }  
 
  function handleSubmit() {
-    // POST request using axios with async/await
-    const data = {  areaName: values.areaName,
-                    areaCode: values.areaCode,
-                    campaignCode:slug
-                   }
-    const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-area', data)
 
-    router.push(`/areas/${slug}`)
+    const data = {  areaName: values.areaName,
+      areaCode: values.areaCode,
+      campaignCode:slug
+    }
+    console.log('this is data',data)
+    setShowAlert(true)
+     
+    addData(data)  
+    // POST request using axios with async/await
+    
+   
+    // const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-area', data)
+    //  console.log('this test',response)              
+    // router.push(`/areas/${slug}`)
     // this.setState({ articleId: response.data.id })
 }
 
-  return (
+  return (<>
+   {showAlert && 
+                        <MyAlert severity={alertSeverity}
+message={alertMessage}
+setShowAlert = {setShowAlert}/> }
     <form
       autoComplete="off"
       noValidate
@@ -118,7 +159,10 @@ export const AddArea = (props) => {
         </Box>
       </Card>
     </form>
-  );
+    </>);
 };
+
+
+
 
 

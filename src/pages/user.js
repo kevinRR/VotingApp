@@ -10,7 +10,14 @@ import { DashboardLayout } from '../components/dashboard-layout';
 
 const Users = () => {
   const [users, setUsers] = useState([])
-      useEffect(() => {     
+      useEffect(() => {
+        // {
+        //   username: 'john',
+        //   role: 'admin'
+        // }, {
+        //   username: 'anna',
+        //   role: 'member'
+        // },    
         const getData = async () => {  
           await axios.get('https://decentralized-ivoting.herokuapp.com/user-list')  
           .then(res => {  
@@ -22,7 +29,7 @@ const Users = () => {
           });  
         }  
         getData()  
-      }, [])
+      }, [users])
   return (<>
     <Head>
       <title>

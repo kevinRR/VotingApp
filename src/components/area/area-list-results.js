@@ -137,6 +137,15 @@ export const AreaListResults = ({ areas, ...rest }) => {
                     >
                       Add Voter
                     </Button>
+                    <Button
+                      color="primary"
+                      endIcon={<ArrowRightIcon />}
+                      size="small"
+                      variant="text"
+                      onClick={() => router.push(`/reasult/${slug},${area.areaCode}`)}
+                    >
+                      View Result
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

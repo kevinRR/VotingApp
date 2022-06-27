@@ -8,21 +8,18 @@ import axios from 'axios';
 
 
 
-export const VotingInfo = (props) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const datas = {  
-    campaignCode: "first-demo",
-    areaCode: "wassipur",
-     }
-  // console.log('this is user',user)
+export const ResultData = ({ slugData, props }) => {
+ 
   const [finalData, setFinalData] = useState([])
 
   const [labels, setLabels] = useState([])
   const [votes, setVotes] = useState([])
+  const [totalVotes, setTotalVotes] = useState()
+
 
       useEffect(() => {     
         const getData = async () => {  
-          await axios.get('https://decentralized-ivoting.herokuapp.com/details?campaignCode=second-demo&areaCode=up')  
+          await axios.get(`https://decentralized-ivoting.herokuapp.com/details?campaignCode=${slugData[0]}&areaCode=${slugData[1]}`)  
           .then(res => {  
             console.log('this res',res.data) 
             setFinalData(res.data) 
@@ -32,17 +29,23 @@ export const VotingInfo = (props) => {
              const vote =finalData.map((key) => 
              key.votes
              );
+             let sum = 0;
+             const votecount =finalData.map((key) => 
+             sum += parseInt(key.votes)
+             );
              setLabels(label);
              setVotes(vote);
 
-             console.log('this is lebel',label)
+             setTotalVotes(sum)
+           
+             console.log('final data',finalData)
           })  
           .catch(err => {  
             console.log(err)  
           });  
         }  
         getData()  
-      }, [finalData])
+      }, [finalData, slugData, totalVotes])
   const theme = useTheme();
 
   const data = {
@@ -83,16 +86,16 @@ export const VotingInfo = (props) => {
 
   const devices = [
     {
-      title: 'Fahad',
-      value: (1/2)*100,
+      title: 'Antara',
+      value: (1/1)*100,
       icon: LaptopMacIcon,
-      color: '#3F51B5'
+    //   color: '#3F51B5'
     },
     {
-      title: 'Sahil',
-      value: (1/2)*100,
+      title: 'Emily',
+      value: (0/1)*100,
       icon: TabletIcon,
-      color: '#E53935'
+    //   color: '#E53935'
     },
     // {
     //   title: 'Candidates C',
@@ -125,14 +128,14 @@ export const VotingInfo = (props) => {
             pt: 2
           }}
         >
-          {devices.map(({
+          {finalData.map(({
             color,
             // icon: Icon,
-            title,
-            value
+            name,
+            votes
           }) => (
             <Box
-              key={title}
+              key={name}
               sx={{
                 p: 1,
                 textAlign: 'center'
@@ -143,13 +146,13 @@ export const VotingInfo = (props) => {
                 color="textPrimary"
                 variant="body1"
               >
-                {title}
+                {name}
               </Typography>
               <Typography
                 style={{ color }}
                 variant="h4"
               >
-                {value}
+                {(votes/totalVotes)*100}
                 %
               </Typography>
             </Box>

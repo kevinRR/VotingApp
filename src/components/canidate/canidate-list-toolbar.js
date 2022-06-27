@@ -31,10 +31,7 @@ export const CanidateListToolbar = (props) =>  {
   console.log('this is test',data,slug)
 
   return (<>
-  {showAlert && 
-                        <MyAlert severity={alertSeverity}
-message={alertMessage}
-setShowAlert = {setShowAlert}/> }
+ 
   <Box {...props}>
     <Box
       sx={{

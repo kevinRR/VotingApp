@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { MyAlert } from '../components/MyAlert';
+import { ErrorAlert } from '../components/errorAlert';
 import React, { useEffect ,useState} from "react"
 
 
@@ -15,18 +15,15 @@ import React, { useEffect ,useState} from "react"
 const Login = () => {
   const [alertSeverity, setAlertSeverity] = useState('')
   const [alertMessage, setAlertMessage] = useState('')
-  const [showAlert, setShowAlert] = useState(true)
-  {showAlert && 
-    <MyAlert severity={alertSeverity}
-message={alertMessage}
-setShowAlert = {setShowAlert}/> }
+  const [showAlert, setShowAlert] = useState(false)
+ 
   let data;
   const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
-      username: "john",
-      password: "password123admin",
+      username: "",
+      password: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().max(255).required("Email is required"),
@@ -35,17 +32,35 @@ setShowAlert = {setShowAlert}/> }
     onSubmit: async () => {
       try {
         const res = await axios.post("https://decentralized-ivoting.herokuapp.com/login/", {
-          username: "john",
-          password: "password123admin",
+          username: formik.values.username,
+          password: formik.values.password,
         });
         data = res.data;
         console.log("data", data);
         localStorage.setItem("user", JSON.stringify(data));
         localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(data));
-        if (data.username === "john") {
+      setAlertSeverity('');
+      setAlertSeverity('success')
+      setShowAlert(true);
+      if (res.data.accessToken) {
+        clearTimeout(timeout);
+        const timeout = setTimeout(() => {
+          setShowAlert(false);
           router.push("/dashboard");
-        }
+         }, 1000);
+        
+      }
+      else{
+        console.log('you return here');
+        setAlertSeverity('error');
+        setShowAlert(true);
+        clearTimeout(timeout);
+        const timeout = setTimeout(() => {
+          setShowAlert(false);
+         }, 1000);
+
+       }  
       } catch (e) {
         console.log(e);
       }
@@ -69,7 +84,7 @@ setShowAlert = {setShowAlert}/> }
       >
         <Container maxWidth="sm">
         {showAlert && 
-                        <MyAlert severity={alertSeverity}
+                        <ErrorAlert severity={alertSeverity}
 message={alertMessage}
 setShowAlert = {setShowAlert}/> }
           {/* <NextLink href="/" passHref>
@@ -143,6 +158,7 @@ setShowAlert = {setShowAlert}/> }
               error={Boolean(formik.touched.password && formik.errors.password)}
               fullWidth
               helperText={formik.touched.password && formik.errors.password}
+
               label="Password"
               margin="normal"
               name="password"

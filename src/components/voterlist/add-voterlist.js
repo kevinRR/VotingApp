@@ -40,7 +40,7 @@ export const AddVotterList = (props) => {
                     areaCode:slug
                    }
     const response =  axios.post('https://decentralized-ivoting.herokuapp.com/add-voter', data)
-    router.push(`/areas/${slug}`)
+    router.push(`/campions`)
     // this.setState({ articleId: response.data.id })
 }
 

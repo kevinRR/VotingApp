@@ -45,10 +45,7 @@ const router = useRouter()
   }
 
   return (<>
-                    {showAlert && 
-                        <MyAlert severity={alertSeverity}
-message={alertMessage}
-setShowAlert = {setShowAlert}/> }
+                    
                     
   <Box {...props}>
     <Box

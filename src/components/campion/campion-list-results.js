@@ -145,7 +145,7 @@ export const CampionListResults = ({ campions, ...rest }) => {
                   </TableCell> */}
                  
                   <TableCell>
-                    {new Date(campion.startDateTime).toLocaleDateString() }{new Date(campion.startDateTime).toLocaleTimeString()}
+                    {new Date(campion.startDateTime).toLocaleDateString() } {new Date(campion.startDateTime).toLocaleTimeString()}
                   </TableCell>
                   <TableCell>
                   {new Date(campion.endDateTime).toLocaleDateString()} {new Date(campion.endDateTime).toLocaleTimeString()}
